@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:ebook_app/my_tabs.dart';
 import 'package:flutter/material.dart';
 import 'package:ebook_app/app_colors.dart' as Appcolors;
 
@@ -32,6 +33,7 @@ class _MenuState extends State<Menu> with SingleTickerProviderStateMixin {
         return [
           SliverAppBar(
             pinned: true,
+            backgroundColor: Appcolors.sliverBackground,
             bottom: PreferredSize(
               preferredSize: Size.fromHeight(50),
               child: Container(
@@ -41,10 +43,11 @@ class _MenuState extends State<Menu> with SingleTickerProviderStateMixin {
                 child: TabBar(
                   indicatorPadding: const EdgeInsets.all(0),
                   indicatorSize: TabBarIndicatorSize.label,
-                  labelPadding: const EdgeInsets.only(right: 10),
+                  labelPadding: const EdgeInsets.only(right: 0),
                   controller: _tabController,
-                  isScrollable: true,
+                  isScrollable: false,
                   indicator: BoxDecoration(
+                      color: Colors.transparent,
                       borderRadius: BorderRadius.circular(10),
                       boxShadow: [
                         BoxShadow(
@@ -53,60 +56,9 @@ class _MenuState extends State<Menu> with SingleTickerProviderStateMixin {
                             offset: Offset(0, 0))
                       ]),
                   tabs: [
-                    Container(
-                      width: 120,
-                      height: 50,
-                      child: Text(
-                        "one",
-                        style: TextStyle(color: Colors.white),
-                      ),
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Appcolors.menu1Color,
-                          boxShadow: [
-                            BoxShadow(
-                                color: Colors.grey.withOpacity(0.3),
-                                blurRadius: 7,
-                                offset: Offset(0, 0))
-                          ]),
-                    ),
-                    Container(
-                      width: 120,
-                      height: 50,
-                      child: Text(
-                        "two",
-                        style: TextStyle(color: Colors.white),
-                      ),
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Appcolors.menu2Color,
-                          boxShadow: [
-                            BoxShadow(
-                                color: Colors.grey.withOpacity(0.3),
-                                blurRadius: 7,
-                                offset: Offset(0, 0))
-                          ]),
-                    ),
-                    Container(
-                      width: 120,
-                      height: 50,
-                      child: Text(
-                        "three",
-                        style: TextStyle(color: Colors.white),
-                      ),
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Appcolors.menu3Color,
-                          boxShadow: [
-                            BoxShadow(
-                                color: Colors.grey.withOpacity(0.3),
-                                blurRadius: 7,
-                                offset: Offset(0, 0))
-                          ]),
-                    )
+                    appTabs(color: Appcolors.menu1Color, text: "New"),
+                    appTabs(color: Appcolors.menu2Color, text: "Popular"),
+                    appTabs(color: Appcolors.menu3Color, text: "Trending")
                   ],
                 ),
               ),
