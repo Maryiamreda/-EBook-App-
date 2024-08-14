@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:ebook_app/menu.dart';
 import 'package:flutter/material.dart';
 import 'package:ebook_app/app_colors.dart' as Appcolors;
 
@@ -10,8 +11,9 @@ class Home extends StatefulWidget {
   State<Home> createState() => _HomeState();
 }
 
-class _HomeState extends State<Home> {
-  late List popularBooks;
+class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
+  late List<dynamic> popularBooks;
+
   ReadData() async {
     await DefaultAssetBundle /*Asset bundles are how Flutter apps access resources that are built into the app. */
             .of(context)
@@ -28,6 +30,7 @@ class _HomeState extends State<Home> {
   void initState() {
     // TODO: implement initState
     super.initState();
+
     ReadData();
   }
 
@@ -107,7 +110,8 @@ class _HomeState extends State<Home> {
                       ))
                 ],
               ),
-            )
+            ),
+            Expanded(child: Menu()),
           ],
         ),
       )),
